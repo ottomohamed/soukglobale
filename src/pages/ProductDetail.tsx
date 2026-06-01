@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { useGetProduct } from "@workspace/api-client-react";
+import { useGetProduct } from "@/hooks/useApi";
 import { Link, useRoute } from "wouter";
 import { formatCurrency, getYoutubeVideoId } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";

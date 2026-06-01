@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { useListProducts } from "@workspace/api-client-react";
+import { useListProducts } from "@/hooks/useApi";
 import { Link, useSearch } from "wouter";
 import { useState, useEffect } from "react";
 import { formatCurrency, DEVELOPING_COUNTRIES } from "@/lib/constants";

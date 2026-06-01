@@ -5,7 +5,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import i18n, { SUPPORTED_LANGUAGES } from "@/i18n";
-import { setApiLang } from "@workspace/api-client-react";
 
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
@@ -39,7 +38,6 @@ function syncDirection(lang: string) {
   const langDef = SUPPORTED_LANGUAGES.find(l => l.code === lang);
   document.documentElement.dir = langDef?.dir ?? "ltr";
   document.documentElement.lang = lang;
-  setApiLang(lang);
 }
 
 function DirectionSync() {

@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { useCreateVendor } from "@workspace/api-client-react";
+import { useCreateVendor } from "@/hooks/useApi";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { CRAFT_CATEGORIES } from "@/lib/constants";

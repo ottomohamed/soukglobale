@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/Button";
 import { Link } from "wouter";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useGetStats, useListProducts, useListVendors } from "@workspace/api-client-react";
+import { useGetStats, useListProducts, useListVendors } from "@/hooks/useApi";
 import { formatCurrency } from "@/lib/constants";
 import { Globe, Users, ShoppingBag, Shield, Truck, Star, Award, ArrowRight, Flame, Clock, MapPin } from "lucide-react";
 import { PotteryIcon, JewelryIcon, LeatherIcon, CarpetsIcon, WoodworkIcon, EmbroideryIcon, MetalworkIcon, PapyrusIcon } from "@/components/ui/CraftIcons";

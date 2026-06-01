@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { useGetVendor } from "@workspace/api-client-react";
+import { useGetVendor } from "@/hooks/useApi";
 import { useRoute, Link } from "wouter";
 import { getYoutubeVideoId, formatCurrency, DEVELOPED_COUNTRIES } from "@/lib/constants";
 import { MapPin, Medal, Store, Star } from "lucide-react";

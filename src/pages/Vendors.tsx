@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { useListVendors } from "@workspace/api-client-react";
+import { useListVendors } from "@/hooks/useApi";
 import { Link } from "wouter";
 import { MapPin, Video, Star } from "lucide-react";
 import { motion } from "framer-motion";

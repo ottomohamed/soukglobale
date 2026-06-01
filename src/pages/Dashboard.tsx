@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { useListProducts, useListOrders, useCreateProduct } from "@workspace/api-client-react";
+import { useListProducts, useListOrders, useCreateProduct } from "@/hooks/useApi";
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/Button";
