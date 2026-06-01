@@ -1,0 +1,23 @@
+packages:
+  "framer-motion": "For elegant page transitions and scroll-triggered animations"
+  "react-hook-form": "For robust complex form handling (registration, checkout)"
+  "@hookform/resolvers": "For Zod validation integration with forms"
+  "clsx": "Utility for conditionally joining classNames"
+  "tailwind-merge": "Utility for merging tailwind classes without style conflicts"
+
+images:
+  - path: "artifacts/crafts-marketplace/public/images/hero-artisan.png"
+    description: "Cinematic, high-quality, warm lighting, an artisan's hands molding clay on a pottery wheel, earthy tones, terracotta, dust, rich textures, authentic, shallow depth of field"
+    aspect_ratio: "16:9"
+  - path: "artifacts/crafts-marketplace/public/images/pattern-bg.png"
+    description: "Subtle, abstract geometric repeating pattern inspired by traditional woven textiles, very low contrast, warm cream and sand colors, seamless background"
+    aspect_ratio: "16:9"
+  - path: "artifacts/crafts-marketplace/public/images/about-hands.png"
+    description: "Close up of weathered, skilled hands weaving a colorful textile on a traditional wooden loom, warm sun light, rich earthy colors, authentic, high resolution"
+    aspect_ratio: "16:9"
+
+notes:
+  - API client hooks are imported from @workspace/api-client-react
+  - Forms use standard Zod schemas for validation
+  - Vendor authentication is simulated via localStorage ('vendorId') for the dashboard
+  - Checkout is a single-item "Buy Now" flow as dictated by the CreateOrderRequest schema
