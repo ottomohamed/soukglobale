@@ -22,18 +22,18 @@ const CATEGORIES = [
   { name: "Embroidery", Icon: EmbroideryIcon, active: "bg-purple-50 text-purple-700 border-purple-300",         inactive: "border-border text-muted-foreground" },
 ];
 
-const PRICE_RANGES = [
-  { label: t("products2.anyPrice"), min: "", max: "" },
-  { label: t("products2.under25"), min: "", max: "25" },
-  { label: "$25 – $75", min: "25", max: "75" },
-  { label: "$75 – $150", min: "75", max: "150" },
-  { label: "$150+", min: "150", max: "" },
+const PRICE_RANGES_KEYS = [
+  { key: "products2.anyPrice", min: "", max: "" },
+  { key: "products2.under25", min: "", max: "25" },
+  { key: "price25to75", min: "25", max: "75" },
+  { key: "price75to150", min: "75", max: "150" },
+  { key: "price150plus", min: "150", max: "" },
 ];
 
-const SORT_OPTIONS = [
-  { value: t("products2.newest"), label: t("products2.newest") },
-  { value: "price_asc", label: "Price: Low → High" },
-  { value: "price_desc", label: "Price: High → Low" },
+const SORT_OPTIONS_KEYS = [
+  { value: "newest", key: "products2.newest" },
+  { value: "price_asc", key: "products2.priceLowHigh" },
+  { value: "price_desc", key: "products2.priceHighLow" },
 ];
 
 // ── Helper: read URL search params ───────────────────────────────────────────
@@ -44,6 +44,8 @@ function useSearchParams() {
 
 export default function Products() {
   const { t } = useTranslation();
+  const PRICE_RANGES = PRICE_RANGES_KEYS.map(r => ({ ...r, label: t(r.key) }));
+  const SORT_OPTIONS = SORT_OPTIONS_KEYS.map(s => ({ ...s, label: t(s.key) }));
   const params = useSearchParams();
 
   const [selectedCategory, setSelectedCategory] = useState(params.get("category") ?? "");
