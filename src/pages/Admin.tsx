@@ -1299,27 +1299,27 @@ export default function Admin() {
                       }}
                     >
                       {/* Image preview + URL */}
+                      {/* Image upload + URL */}
                       <div>
-                        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Image URL</label>
+                        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Product Image</label>
                         <div className="mb-2 rounded-xl overflow-hidden border border-border bg-muted h-48">
                           {editingProduct.imageUrl
-                            ? <img src={editingProduct.imageUrl} alt="preview" className="w-full h-full object-cover" onError={e => { (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x200?text=Invalid+URL'; }} />
+                            ? <img src={editingProduct.imageUrl} alt="preview" className="w-full h-full object-cover" onError={e => { (e.target as HTMLImageElement).src = "https://via.placeholder.com/400x200?text=Invalid+URL"; }} />
                             : <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">No image set</div>
                           }
                         </div>
-                        <input
-                          type="url"
-                          value={editingProduct.imageUrl || ''}
-                          onChange={e => setEditingProduct((p: any) => ({ ...p, imageUrl: e.target.value }))}
-                          placeholder="https://example.com/image.jpg"
-                          className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                        />
-                        <p className="text-xs text-muted-foreground mt-1">Paste any direct image link. Tip: use Unsplash, Pexels, or Wikimedia.</p>
+                        <AdminImageUploader onUploaded={(url) => setEditingProduct((p: any) => ({ ...p, imageUrl: url }))} />
+                        <div className="mt-2">
+                          <p className="text-xs text-muted-foreground mb-1">Or paste image URL:</p>
+                          <input
+                            type="url"
+                            value={editingProduct.imageUrl || ""}
+                            onChange={e => setEditingProduct((p: any) => ({ ...p, imageUrl: e.target.value }))}
+                            placeholder="https://example.com/image.jpg"
+                            className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          />
+                        </div>
                       </div>
-
-                      <div>
-                        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Title</label>
-                        <input
                           type="text"
                           value={editingProduct.title || ''}
                           onChange={e => setEditingProduct((p: any) => ({ ...p, title: e.target.value }))}
