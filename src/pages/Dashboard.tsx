@@ -654,6 +654,7 @@ export default function Dashboard() {
   const queryClient = useQueryClient();
   const [isAdding, setIsAdding] = useState(false);
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  const [uploadedImageUrls, setUploadedImageUrls] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<"products" | "orders" | "earnings">("products");
 
   const { data: productsData } = useListProducts(
@@ -682,12 +683,14 @@ export default function Dashboard() {
         ...data,
         shippingCostUsd: submittedShipping,
         vendorId: vendor.id,
-        imageUrl: uploadedImageUrl || data.imageUrl || undefined
+        imageUrl: uploadedImageUrls[0] || uploadedImageUrl || data.imageUrl || undefined,
+        imageUrls: uploadedImageUrls.filter(Boolean)
       }
     }, {
       onSuccess: () => {
         setIsAdding(false);
         setUploadedImageUrl("");
+        setUploadedImageUrls([]);
         reset({ freeShipping: false });
         queryClient.invalidateQueries({ queryKey: ["/api/products"] });
       }
@@ -915,16 +918,26 @@ export default function Dashboard() {
                       <Input label="Stock Qty" type="number" {...register("stockQuantity")} error={errors.stockQuantity?.message} />
                     </div>
 
-                    {/* Image */}
+                    {/* Images - 2 to 4 */}
                     <div>
-                      <label className="block text-sm font-semibold mb-2">Product Image</label>
-                      <ImageUploader onUploaded={(url) => { setUploadedImageUrl(url); setValue("imageUrl", url); }} />
-                      {!uploadedImageUrl && (
-                        <div className="mt-2">
-                          <Input label="Or paste image URL" placeholder="https://..." {...register("imageUrl")} error={errors.imageUrl?.message} />
-                        </div>
-                      )}
-                      {uploadedImageUrl && <p className="text-xs text-green-600 mt-1 flex items-center gap-1"><CheckCircle className="w-3.5 h-3.5" /> Image uploaded</p>}
+                      <label className="block text-sm font-semibold mb-2">Product Images (2-4 photos)</label>
+                      <p className="text-xs text-muted-foreground mb-3">Add 2 to 4 photos of your product. First image will be the main photo.</p>
+                      <div className="grid grid-cols-2 gap-3">
+                        {[0,1,2,3].map((i) => (
+                          <div key={i} className="space-y-1">
+                            <p className="text-xs font-medium text-muted-foreground">{i === 0 ? "Main Photo *" : `Photo ${i+1} ${i < 2 ? "*" : "(optional)"}`}</p>
+                            <ImageUploader onUploaded={(url) => {
+                              const newUrls = [...uploadedImageUrls];
+                              newUrls[i] = url;
+                              setUploadedImageUrls(newUrls);
+                              if (i === 0) setValue("imageUrl", url);
+                            }} />
+                            {uploadedImageUrls[i] && (
+                              <p className="text-xs text-green-600 flex items-center gap-1"><CheckCircle className="w-3 h-3" /> Uploaded</p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     </div>
 
                     {/* Description */}
