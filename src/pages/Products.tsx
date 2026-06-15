@@ -2,6 +2,7 @@ import { Layout } from "@/components/layout/Layout";
 import { useListProducts } from "@/hooks/useApi";
 import { Link, useSearch } from "wouter";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { formatCurrency, DEVELOPING_COUNTRIES } from "@/lib/constants";
 import { Search, SlidersHorizontal, X, ShoppingBag, Star, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -22,15 +23,15 @@ const CATEGORIES = [
 ];
 
 const PRICE_RANGES = [
-  { label: "Any Price", min: "", max: "" },
-  { label: "Under $25", min: "", max: "25" },
+  { label: t("products2.anyPrice"), min: "", max: "" },
+  { label: t("products2.under25"), min: "", max: "25" },
   { label: "$25 – $75", min: "25", max: "75" },
   { label: "$75 – $150", min: "75", max: "150" },
   { label: "$150+", min: "150", max: "" },
 ];
 
 const SORT_OPTIONS = [
-  { value: "newest", label: "Newest" },
+  { value: t("products2.newest"), label: t("products2.newest") },
   { value: "price_asc", label: "Price: Low → High" },
   { value: "price_desc", label: "Price: High → Low" },
 ];
@@ -42,12 +43,13 @@ function useSearchParams() {
 }
 
 export default function Products() {
+  const { t } = useTranslation();
   const params = useSearchParams();
 
   const [selectedCategory, setSelectedCategory] = useState(params.get("category") ?? "");
   const [selectedCountry, setSelectedCountry] = useState(params.get("country") ?? "");
   const [selectedPrice, setSelectedPrice] = useState(0); // index into PRICE_RANGES
-  const [sortBy, setSortBy] = useState("newest");
+  const [sortBy, setSortBy] = useState(t("products2.newest"));
   const [searchText, setSearchText] = useState(params.get("search") ?? "");
   const [debouncedSearch, setDebouncedSearch] = useState(searchText);
   const [showFilters, setShowFilters] = useState(false);
@@ -89,7 +91,7 @@ export default function Products() {
     setSelectedCategory("");
     setSelectedCountry("");
     setSelectedPrice(0);
-    setSortBy("newest");
+    setSortBy(t("products2.newest"));
     setSearchText("");
     setDebouncedSearch("");
   };
