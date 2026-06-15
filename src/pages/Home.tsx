@@ -39,10 +39,10 @@ const categoryData = [
 ];
 
 const trustFeatures = [
-  { icon: <Shield className="w-6 h-6 text-primary" />, title: "Verified Artisans", desc: "Every seller is personally vetted and approved by our team before listing." },
-  { icon: <Truck className="w-6 h-6 text-primary" />, title: "Worldwide Shipping", desc: "We ship to 120+ countries via DHL, Aramex, FedEx and local carriers." },
-  { icon: <Star className="w-6 h-6 text-primary" />, title: "5-Star Reviews", desc: "Over 95% of our orders receive 5-star ratings from happy buyers." },
-  { icon: <Award className="w-6 h-6 text-primary" />, title: "Fair Trade Promise", desc: "Artisans keep 85% of every sale. No middlemen, no exploitation." },
+  { icon: <Shield className="w-6 h-6 text-primary" />, title: t("home2.trust1Title"), desc: t("home2.trust1Desc") },
+  { icon: <Truck className="w-6 h-6 text-primary" />, title: t("home2.trust2Title"), desc: t("home2.trust2Desc") },
+  { icon: <Star className="w-6 h-6 text-primary" />, title: t("home2.trust3Title"), desc: t("home2.trust3Desc") },
+  { icon: <Award className="w-6 h-6 text-primary" />, title: t("home2.trust4Title"), desc: t("home2.trust4Desc") },
 ];
 
 const testimonials = [
@@ -52,6 +52,7 @@ const testimonials = [
 ];
 
 export default function Home() {
+  const { t } = useTranslation();
   const { data: stats } = useGetStats();
   const { data: productsData, isLoading: productsLoading } = useListProducts({ limit: 8 });
   const { data: vendorsData } = useListVendors({ limit: 4 });
