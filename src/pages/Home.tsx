@@ -38,12 +38,7 @@ const categoryData = [
   { name: "Papyrus Art",Icon: PapyrusIcon,  accent: "#3d6b21", bg: "from-lime-50 to-lime-100/60",     border: "border-lime-200/80",   text: "text-lime-800"  },
 ];
 
-const trustFeatures = [
-  { icon: <Shield className="w-6 h-6 text-primary" />, title: t("home2.trust1Title"), desc: t("home2.trust1Desc") },
-  { icon: <Truck className="w-6 h-6 text-primary" />, title: t("home2.trust2Title"), desc: t("home2.trust2Desc") },
-  { icon: <Star className="w-6 h-6 text-primary" />, title: t("home2.trust3Title"), desc: t("home2.trust3Desc") },
-  { icon: <Award className="w-6 h-6 text-primary" />, title: t("home2.trust4Title"), desc: t("home2.trust4Desc") },
-];
+
 
 const testimonials = [
   { name: "Sophie M.", country: "Paris, France 🇫🇷", text: "The zellige bowl arrived perfectly packed and looks stunning on my dining table. The artisan even included a handwritten note. 10/10!", stars: 5, product: "Zellige Ceramic Bowl" },
@@ -53,6 +48,12 @@ const testimonials = [
 
 export default function Home() {
   const { t } = useTranslation();
+  const trustFeatures = [
+    { icon: <Shield className="w-6 h-6 text-primary" />, title: t("home2.trust1Title"), desc: t("home2.trust1Desc") },
+    { icon: <Truck className="w-6 h-6 text-primary" />, title: t("home2.trust2Title"), desc: t("home2.trust2Desc") },
+    { icon: <Star className="w-6 h-6 text-primary" />, title: t("home2.trust3Title"), desc: t("home2.trust3Desc") },
+    { icon: <Award className="w-6 h-6 text-primary" />, title: t("home2.trust4Title"), desc: t("home2.trust4Desc") },
+  ];
   const { data: stats } = useGetStats();
   const { data: productsData, isLoading: productsLoading } = useListProducts({ limit: 8 });
   const { data: vendorsData } = useListVendors({ limit: 4 });
