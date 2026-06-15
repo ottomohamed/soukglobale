@@ -1,13 +1,38 @@
-import { Layout } from "@/components/layout/Layout";
+﻿import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   Lock, CheckCircle, XCircle, AlertTriangle, Users, Box, TrendingUp,
   ShieldAlert, Truck, UserX, Ban, Globe, UserCog, Eye, EyeOff, Plus, Trash2, Pencil, X,
   Landmark, Bot, MapPin, Wallet, Clock
 } from "lucide-react";
 import { formatCurrency } from "@/lib/constants";
+import { useImageUpload } from "@/hooks/useImageUpload";
+
+function AdminImageUploader({ onUploaded }: { onUploaded: (url: string) => void }) {
+  const { uploadImage, uploadState } = useImageUpload();
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+  const handleFile = async (file: File) => {
+    setPreview(URL.createObjectURL(file));
+    const url = await uploadImage(file);
+    if (url) onUploaded(url);
+  };
+  return (
+    <div>
+      <div onClick={() => fileRef.current?.click()} className="border-2 border-dashed border-border rounded-xl p-4 text-center cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-colors">
+        {preview ? <img src={preview} className="h-16 mx-auto object-cover rounded-lg" alt="preview" /> : (
+          <div className="flex items-center justify-center gap-2 text-muted-foreground">
+            <span className="text-lg"></span>
+            <p className="text-sm">{uploadState === "uploading" ? "Uploading..." : uploadState === "done" ? " Uploaded!" : "Click to upload from computer"}</p>
+          </div>
+        )}
+      </div>
+      <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={e => { if (e.target.files?.[0]) handleFile(e.target.files[0]); }} />
+    </div>
+  );
+}
 
 type Perms = {
   vendors: boolean; disputes: boolean; shipping: boolean;
