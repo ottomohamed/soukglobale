@@ -98,7 +98,7 @@
     under25: "أقل من 25$",
     price25to75: "25$ - 75$",
     price75to150: "75$ - 150$",
-    price150plus: "150price150plus: "150  vendors:"",
+    price150plus: "اكثر من 150 دولار",
     newest: "الأحدث",
     priceLowHigh: "السعر: من الأقل",
     priceHighLow: "السعر: من الأعلى",
