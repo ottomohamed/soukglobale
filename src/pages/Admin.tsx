@@ -1319,16 +1319,16 @@ export default function Admin() {
                             className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
                           />
                         </div>
-                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Title</label>
+                        <input
                           type="text"
-                          value={editingProduct.title || ''}
+                          value={editingProduct.title || ""}
                           onChange={e => setEditingProduct((p: any) => ({ ...p, title: e.target.value }))}
                           required
                           className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
                         />
                       </div>
-
-                      <div className="grid grid-cols-2 gap-3">
                         <div>
                           <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Price (USD)</label>
                           <input
